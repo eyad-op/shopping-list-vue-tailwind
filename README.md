@@ -1,4 +1,5 @@
-# vue-fundamentals
+# Simple Vue shopping list app  
+Simple shopping list app made with vue and experimenting Tailwind css  
 
 ## Project setup
 ```
