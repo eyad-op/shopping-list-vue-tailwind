@@ -1,5 +1,5 @@
 # Simple Vue.js shopping list app  
-Simple shopping list app made with vue and experimenting Tailwind css  
+Simple shopping list app made with vue and trying Tailwind css
 
 ## Project setup
 ```
