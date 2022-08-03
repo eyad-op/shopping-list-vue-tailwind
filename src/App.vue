@@ -79,7 +79,7 @@
         >
 
         <button
-          @click="deleteFromList(index)"
+          @click="deleteFromList(item)"
           class="px-2 font-bold text-orange-200 border-2 hover:border-orange-500 hover:text-orange-500 rounded-md"
         >
           X
@@ -126,8 +126,9 @@ export default {
         setTimeout(() => (this.emptyItem = false), 1000);
       }
     },
-    deleteFromList(index) {
-      this.itemsList.splice(this.itemsList.length - 1 - index, 1);
+    deleteFromList(item) {
+      // this.itemsList.splice(this.itemsList.length - 1 - index, 1);
+      this.itemsList = this.itemsList.filter((listItem) => listItem != item);
     },
   },
   computed: {
