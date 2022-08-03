@@ -6,7 +6,6 @@
       Welcome to your shopping list for
       <span class="text-orange-400">{{ date }}</span>
     </h1>
-
     <form
       @submit.prevent="setItem"
       class="w-full mt-8 flex justify-center flex-wrap gap-2"
@@ -14,8 +13,6 @@
       <input
         class="py-2 px-3 bg-green-100 w-2/3 text-xl rounded-md grow border-none outline-none focus:bg-yellow-200"
         type="text"
-        name=""
-        id=""
         placeholder="Add an item"
         v-model="newItem"
       />
@@ -42,7 +39,6 @@
         ADD ITEM
       </button>
     </form>
-
     <p
       v-if="!itemsList.length"
       class="text-xl text-gray-500 font-bold mt-4 italic"
@@ -55,43 +51,22 @@
     <p v-if="emptyItem" class="text-2xl text-red-600 font-bold mt-3 italic">
       Item cannot be empty
     </p>
-    <ul class="w-full text-left mt-4">
-      <li
-        v-for="(item, index) in itemsListReversed"
-        :key="item.id"
-        class="text-xl font-medium mt-2 px-2 py-1 hover:font-semibold hover:bg-lime-100 ease-in-out duration-300 flex justify-between items-center rounded-md"
-      >
-        <span
-          class="cursor-pointer"
-          @click="setPurchased(item)"
-          :class="[
-            [
-              item.purchased && item.highPriority
-                ? 'line-through opacity-50'
-                : item.purchased
-                ? 'line-through opacity-50'
-                : '',
-            ],
-            [item.highPriority ? 'text-red-500' : ''],
-          ]"
-        >
-          {{ item.label }}</span
-        >
-
-        <button
-          @click="deleteFromList(item)"
-          class="px-2 font-bold text-orange-200 border-2 hover:border-orange-500 hover:text-orange-500 rounded-md"
-        >
-          X
-        </button>
-      </li>
-    </ul>
+    <ListOfItems
+      :listItems="itemsListReversed"
+      @deleteItem="deleteFromList"
+      @check="setPurchased"
+    />
   </div>
 </template>
 
 <script>
+import ListOfItems from "@/components/ListOfItems.vue";
 export default {
   name: "App",
+  components: {
+    ListOfItems,
+  },
+
   data() {
     return {
       itemsList: [
@@ -102,8 +77,8 @@ export default {
         // { id: 4, label: "Fourth item", purchased: false, highPriority: false },
       ],
       newItem: "",
-      emptyItem: false,
       itemPriority: false,
+      emptyItem: false,
       date: new Date().toLocaleDateString(),
     };
   },
