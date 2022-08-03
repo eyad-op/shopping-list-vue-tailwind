@@ -127,7 +127,6 @@ export default {
       }
     },
     deleteFromList(item) {
-      // this.itemsList.splice(this.itemsList.length - 1 - index, 1);
       this.itemsList = this.itemsList.filter((listItem) => listItem != item);
     },
   },
